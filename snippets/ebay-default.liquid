@@ -1,0 +1,241 @@
+{defaultcss}
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<div id="ebay-description" class="nojs">
+		<div class="container">
+				<img class="logo" src="{CDNUrl}/images/logo.png?width=501&amp;nostretch&etag={LogoEtag}" />
+		</div>
+		<div class="container">
+				<div class="block">
+						<div class="row">
+								<div class="span12">
+										<h2>{Title}</h2>
+								</div>
+						</div>
+						<div class="row">
+								<div class="span12">
+										<!--startcodistodescription - DO NOT REMOVE-->
+										{include field="EbayDescription"}
+										<!--endcodistodescription - DO NOT REMOVE-->
+								</div>
+						</div>
+						<div class="row">
+								<div class="span12 text-center">
+										<a href="#img1">
+											<img class="logo" src="{DefaultProductImage}&amp;width=547">
+										</a>
+										<a href="#_" class="lightbox" id="img1">
+											<div class="close-img">&times</div>
+											<img src="{DefaultProductImage}&amp;width=800" />
+										</a>
+
+										{for images}
+											<a href="#_" class="lightbox" id="img{position+1}">
+												<div class="close-img">&times</div>
+												<img src="{images.Source}&amp;width=800&amp;height=600">
+											</a>
+										{/for}
+
+										<div class="clearfix"></div>
+										{if count(images) > 1}<hr/>{/if}
+										{for images step=4}
+												<div class="row image-row text-center">
+													{for Images count=4 start={position}}
+														<div class="span2"><a class="image fancybox" href="#img{position+1}"><img src="{images.Source}&amp;width=200&amp;height=200"/></a></div>
+													{/for}
+												</div>
+										{/for}
+										<br />
+								</div>
+						</div>
+						<div class="row">
+								<div class="span5 buy-now">
+								{if !MultiVariant}
+										<a href="https://offer.{EbaySiteURL}/ws/eBayISAPI.dll?BinConfirm&amp;quantity=1&amp;fb=1&amp;item={EbayItemID}" target="_blank" class="btn btn-large btn-primary"><i class="icon-shopping-cart icon-white"></i> Buy now and save!</a>
+								{/if}
+								</div>
+						</div>
+				</div>
+		</div>
+		{if overviewhtml}
+		<!--<div class="container">-->
+		<div class="block">
+			<div class="row">
+				<div class="span12">
+					<h2>Overview</h2>
+				<!--</div>-->
+			</div>
+			<div class="row">
+				<div class="span7">
+					{include field="overviewhtml"}
+				</div>
+				<div class="span5">
+					<div class="quote">
+						<p><a href="https://contact.{EbaySiteURL}/ws/eBayISAPI.dll?FindAnswers&frm=284&requested={EbayUserID}&iid={EbayItemID}" target="_blank">Contact Us</a> for more details!</p>
+					</div>
+					{for overview}
+						<img src="{CDNUrl}{src}" />
+					{/for}
+				</div>
+			</div>
+		</div>
+		</div>
+		{/if}
+		{if productspecshtml}
+		<div class="container">
+			<div class="block">
+				<div class="row">
+					<div class="span12">
+						<h2>Product specification</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span6">
+						{include field="productspecshtml"}
+					</div>
+					<div class="span6">
+					{for specimage step=2}
+					<div class="row">
+						{for specimage count=2 start={position}}
+							<div class="span3">
+								<a class="fancybox image" href="{CDNUrl}{specimage.src}"><img src="{CDNUrl}{specimage.src}" /></a>
+							</div>
+						{/for}
+					</div>
+					{/for}
+					</div>
+				</div>
+			</div>
+		</div>
+		{/if}
+		
+		{if SuggestedProducts}
+				<div class="container">
+					<div class="block" id="you_like">
+						<div class="row">
+							<div class="span12">
+								<h2>You might also like</h2>
+							</div>
+						</div>
+						<div class="row">
+							{for SuggestedProducts}
+								<div class="span3">
+									<div class="imagecenter">
+										<a target="_blank" href="https://cgi.{EbaySiteURL}/{EbayItemID}"><img src="{Source}&width=170&height=170" /></a>
+									</div>
+									<h4><a target="_blank" href="https://cgi.{EbaySiteURL}/{EbayItemID}">{Name}</a></h4>
+								</div>
+							{/for}
+						</div>
+					</div>
+				</div>
+		{/if}
+
+
+		<div class="container">
+		<div class="tabs">
+
+			<div class="tab">
+				<input type="radio" id="tab-1" name="tab-group-1" checked>
+				<label for="tab-1" style="margin-left: 2px;">Contact</label>
+
+				<div class="content">
+					<div class="row">
+						 <div class="span6">
+							 <p>To contact our Customer Service Team, simply click the button here and our Customer Service team will be happy to assist.</p>
+							 <p><a target="_blank" href="https://contact.{EbaySiteURL}/ws/eBayISAPI.dll?FindAnswers&frm=284&requested={EbayUserID}&iid={EbayItemID}" class="btn btn-primary btn-large"><i class="icon-info-sign icon-white"></i> Ask seller a question</a></p>
+						 </div>
+						 <div class="span6">
+							 {if MerchantName != "<to be set>"}<p>&copy; {MerchantName}</p>{/if}
+						 </div>
+					</div>
+				</div>
+			</div>
+
+			<div class="tab">
+				<input type="radio" id="tab-2" name="tab-group-1">
+				<label for="tab-2">Shipping</label>
+
+				<div class="content">
+				  <p>In stock items are delivered within 3-5 working days.</p>
+                  <p>In stock sofas are delivered within 1 week and custom orders can take up to 6 weeks. If you require your delivery on a particular date then please contact us prior to ordering. </p>
+                  <p>You will then be contacted 24 hours prior to the confirmed delivery date to ensure you are still able to accept the delivery. </p>
+                  <p>On the day of delivery, please ensure that the delivery team can gain easy access to the room that the furniture is going into. Please make sure that the area you want the furniture placed is cleared. To make sure you are completely satisfied with your furniture the delivery team will ask you to sign for your furniture after it has been delivered.</p>
+							 {if ShippingDomesticServiceType = "CalculatedEbay" OR ShippingRateTable != 0}
+								 
+							 {else}
+								 {if FlatShippingRate = 0 AND ShippingDomesticServiceType = "Flat"}
+										 Shipping is FREE for this item
+								 {else if ShippingDomesticServiceType = "Flat"}
+										 Shipping is a flat rate across {MerchantCountry} at a rate of {format ShippingDomesticCost1, EbayCurrency}
+								 {else if ShippingDomesticServiceType = "CalculatedMerchant"}
+										 Shipping can be calculated with the Shipping Calculator above.
+								 {/if}
+							 {/if}
+					 </p>
+				 </div>
+			</div>
+
+			{if WarrantyHTML}
+			<div class="tab">
+				<input type="radio" id="tab-3" name="tab-group-1">
+				<label for="tab-3">Warranty</label>
+
+				<div class="content">
+					{include field="WarrantyHTML"}
+				</div>
+			</div>
+			{/if}
+
+			<div class="tab">
+				<input type="radio" id="tab-4" name="tab-group-1">
+				<label for="tab-4">Payment</label>
+
+              <div class="content">
+              {if PaymentAccepted}
+              <p>Living Prestige accepts the following payment methods:</p>
+              <p>Debit Card</p>
+              <p>Mastercard</p>
+              <p>Bank Transfer</p>
+              <p>Klarna</p>
+              <p>Cash on delivery (deposit may be required) - (sofas and beds only)</p>
+                {/if}
+                {else}
+				<p>Living Prestige accepts the following payment methods:</p>
+              <p>Debit Card</p>
+              <p>Mastercard</p>
+              <p>Bank Transfer</p>
+              <p>Klarna</p>
+              <p>Cash on delivery (deposit may be required) - (sofas and beds only)</p>
+              </div>
+
+				
+			</div>
+
+			<div class="tab">
+			  <input type="radio" id="tab-5" name="tab-group-1">
+			  <label for="tab-5">Returns</label>
+
+			  <div class="content">
+					{if ReturnsAccepted}
+						<p>If you wish to return your order you must notify us in writing within 14 calendar days from the day you receive your order.</p>
+						<p>All returns must be in original condition otherwise they will be deemed non-returnable.</p>
+						<p>The customer is responsible for all returns shipping charges and must make sure it is delivered in a resaleable condition before any refund will be made.</p>
+					{/if}
+
+					<p>{if EbayShippingCostPaidByOption = "Buyer"}Buyer{else}Seller{/if} will pay for return shipping. </p>
+
+					{if EbayReturnPolicyDescription}
+						<br />
+						<strong>Additional Information:</strong>
+						<div>{EbayReturnPolicyDescription}</div>
+					{/if}
+			   </div>
+		   </div>
+
+		</div>
+		</div>
+
+		
+</div>
